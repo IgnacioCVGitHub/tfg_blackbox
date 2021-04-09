@@ -9,16 +9,13 @@ import pandas as pandas
 import math as math
 import random as random
 import numpy as np
-
+import os
 
 '''DEFINICIONES Y UTILIDADES'''
 
-rutas=["/content/drive/MyDrive/Colab Notebooks/adelikat-mtpo.fm2",
-       "/content/drive/MyDrive/Colab Notebooks/adelikat2-punchout.fm2",
-       "/content/drive/MyDrive/Colab Notebooks/adelikatv4-miketysonspunchout.fm2",
-       "/content/drive/MyDrive/Colab Notebooks/adelikatv5-punchout.fm2",
-       "/content/drive/MyDrive/Colab Notebooks/phil,genisto-mtpo.fm2",
-       "/content/drive/MyDrive/Colab Notebooks/phil,genistov2-mtpo.fm2"]
+
+cabecera="C:\\Users\\icalc\\Documents\\TFG\\fceuxs\\fm2"
+rutas=os.listdir(cabecera)
 
 prob_cross=0.7
 prob_mut=0.1
@@ -141,7 +138,7 @@ def separa_idles(cromosoma):
 
 '''COMIENZO DEL ALGORITMO'''
 estados, mapaestados= generaestados()
-individuos_iniciales=[gen_ind_fich(ruta) for ruta in rutas]
+individuos_iniciales=[gen_ind_fich(cabecera+"\\"+ruta) for ruta in rutas]
 
 
 #preparacion de los individuos para igualar la longitud de cromosomas
