@@ -150,10 +150,26 @@ ind_iniciales_preparados= [addNopes(i,max_length) for i in individuos_iniciales]
 #buscar las zonas en las que no se realiza ninguna actividad, pues estas no son relevantes
 #para el testing
 
-matrices_idles=[np.matrix(separa_idles(cromosoma)) for cromosoma in ind_iniciales_preparados]
+#matrices_idles=[np.matrix(separa_idles(cromosoma)) for cromosoma in ind_iniciales_preparados]
 
 #gaps=[np.matrix(separa_idles(cromosoma)).shape for cromosoma in ind_iniciales_preparados]
 
+if !(os.path.exists("temp_movies") && os.path.isdir("temp_movies")):
+  os.mkdir("temp_movies")
+
+cabecera=""
+cabecera+="version 3\n"
+cabecera+="emuVersion 9816\n"
+cabecera+="fourscore 0\n"
+cabecera+="romFilename Mike Tyson's Punch-Out!! (Japan, USA) (Rev A).nes\n"
+cabecera+="romChecksum base64:W8f6wG5Y/aFf2YH9A1csNA==\n"
+cabecera+="guid 452DE2C3-EF43-2FA9-77AC-0677FC51543B\n"
+cabecera+="microphone 0\nport0 1\nport1 0\nport2 0\n"
+
+
+
+
+for i in range(len(ind_iniciales_preparados)):
 
 
 ind_iniciales_preparados+=genera_randoms(10,max_length)
