@@ -1,4 +1,4 @@
-emu.speedmode("normal") -- Set the speed of the emulator
+--DECLARACIÓN DE FUNCIONES AUXILIARES
 
 function serializeTable(val, name, skipnewlines, depth)
     skipnewlines = skipnewlines or false
@@ -29,13 +29,16 @@ function serializeTable(val, name, skipnewlines, depth)
     return tmp
 end
 
+-- CÓDIGO 
+
+emu.speedmode("normal") -- Set the speed of the emulator
 
 while true do
 
     -- Execute instructions for FCEUX
     
     emu.frameadvance() -- This essentially tells FCEUX to keep running
-    m=serializeTable(joypad.readup(1))
-    emu.message(m)
+    m=serializeTable(joypad.readdown(1))
+    emu.print(m)
  
  end
