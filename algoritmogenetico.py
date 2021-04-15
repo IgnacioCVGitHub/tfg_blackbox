@@ -135,6 +135,15 @@ def separa_idles(cromosoma):
 
   return blanks
 
+def genera_guid():
+  s1=[str(hex(random.randint(0,16))) for i in range (8)]
+  s2=[str(hex(random.randint(0,16))) for i in range (4)]
+  s3=[str(hex(random.randint(0,16))) for i in range (4)]
+  s4=[str(hex(random.randint(0,16))) for i in range (4)]
+  s5=[str(hex(random.randint(0,16))) for i in range (6)]
+  
+  guid="{}-{}-{}-{}-{}".format(str.join(s1),str.join(s2),str.join(s3),str.join(s4),str.join(s5))
+  return guid
 
 '''COMIENZO DEL ALGORITMO'''
 estados, mapaestados= generaestados()
@@ -154,7 +163,9 @@ ind_iniciales_preparados= [addNopes(i,max_length) for i in individuos_iniciales]
 
 #gaps=[np.matrix(separa_idles(cromosoma)).shape for cromosoma in ind_iniciales_preparados]
 
-if !(os.path.exists("temp_movies") && os.path.isdir("temp_movies")):
+ruta_tempmovies= os.path.join(os.getcwd(),"temp_movies")
+
+if not (os.path.exists(ruta_tempmovies) and os.path.isdir(ruta_tempmovies)):
   os.mkdir("temp_movies")
 
 cabecera=""
@@ -163,14 +174,14 @@ cabecera+="emuVersion 9816\n"
 cabecera+="fourscore 0\n"
 cabecera+="romFilename Mike Tyson's Punch-Out!! (Japan, USA) (Rev A).nes\n"
 cabecera+="romChecksum base64:W8f6wG5Y/aFf2YH9A1csNA==\n"
-cabecera+="guid 452DE2C3-EF43-2FA9-77AC-0677FC51543B\n"
+
 cabecera+="microphone 0\nport0 1\nport1 0\nport2 0\n"
 
 
 
 
-for i in range(len(ind_iniciales_preparados)):
-
+#for i in range(len(ind_iniciales_preparados)):
+#  cabecera+="guid "+genera_guid() 
 
 ind_iniciales_preparados+=genera_randoms(10,max_length)
 ind_iniciales_preparados+=genera_heuristic(ind_iniciales_preparados[0],10)
