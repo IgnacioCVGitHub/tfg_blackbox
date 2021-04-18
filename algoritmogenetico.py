@@ -10,6 +10,7 @@ import math as math
 import random as random
 import numpy as np
 import os
+import copy
 
 '''DEFINICIONES Y UTILIDADES'''
 
@@ -142,7 +143,7 @@ def genera_guid():
   s4=[str(hex(random.randint(0,16))) for i in range (4)]
   s5=[str(hex(random.randint(0,16))) for i in range (6)]
   
-  guid="{}-{}-{}-{}-{}".format(str.join(s1),str.join(s2),str.join(s3),str.join(s4),str.join(s5))
+  guid="{}-{}-{}-{}-{}".format("".join(s1),"".join(s2),"".join(s3),"".join(s4),"".join(s5))
   return guid
 
 '''COMIENZO DEL ALGORITMO'''
@@ -159,9 +160,7 @@ ind_iniciales_preparados= [addNopes(i,max_length) for i in individuos_iniciales]
 #buscar las zonas en las que no se realiza ninguna actividad, pues estas no son relevantes
 #para el testing
 
-#matrices_idles=[np.matrix(separa_idles(cromosoma)) for cromosoma in ind_iniciales_preparados]
 
-#gaps=[np.matrix(separa_idles(cromosoma)).shape for cromosoma in ind_iniciales_preparados]
 
 ruta_tempmovies= os.path.join(os.getcwd(),"temp_movies")
 
@@ -177,16 +176,27 @@ cabecera+="romChecksum base64:W8f6wG5Y/aFf2YH9A1csNA==\n"
 
 cabecera+="microphone 0\nport0 1\nport1 0\nport2 0\n"
 
-
-
-
-#for i in range(len(ind_iniciales_preparados)):
-#  cabecera+="guid "+genera_guid() 
-
 ind_iniciales_preparados+=genera_randoms(10,max_length)
 ind_iniciales_preparados+=genera_heuristic(ind_iniciales_preparados[0],10)
 
-#ordenación de los individuos por la función de fitness
-#ind_iniciales_preparados.sort(key=lambda x: f_fitness(x))
 
 
+numero_generacion=0
+while numero_generacion<10:
+    for i in range(len(ind_iniciales_preparados)):
+      filename='movie'+str(i)+'.fm2'
+      filename=os.path.join('temp_movies',filename)
+      with open(filename,'w') as archivo:
+        copy_cabecera=copy.copy(cabecera)
+        copy_cabecera+=genera_guid()+'\n'
+        movietext=copy_cabecera
+        movietext+="|2|"+estados[ind_iniciales_preparados[i][0]]+"|||\n"
+        inputs="".join(["|0|"+estados[g]+"|||\n"
+          for g in ind_iniciales_preparados[i][1:]])
+        movietext+=inputs
+        archivo.write(movietext)
+    print("Archivos generados")
+    numero_generacion=10
+
+
+        
