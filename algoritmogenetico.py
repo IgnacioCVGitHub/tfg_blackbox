@@ -137,13 +137,13 @@ def separa_idles(cromosoma):
   return blanks
 
 def genera_guid():
-  s1=[str(hex(random.randint(0,16))) for i in range (8)]
-  s2=[str(hex(random.randint(0,16))) for i in range (4)]
-  s3=[str(hex(random.randint(0,16))) for i in range (4)]
-  s4=[str(hex(random.randint(0,16))) for i in range (4)]
-  s5=[str(hex(random.randint(0,16))) for i in range (6)]
+  s1=[str(hex(random.randint(0,16)))[2:].upper() for i in range (8)]
+  s2=[str(hex(random.randint(0,16)))[2:].upper() for i in range (4)]
+  s3=[str(hex(random.randint(0,16)))[2:].upper() for i in range (4)]
+  s4=[str(hex(random.randint(0,16)))[2:].upper() for i in range (4)]
+  s5=[str(hex(random.randint(0,16)))[2:].upper() for i in range (6)]
   
-  guid="{}-{}-{}-{}-{}".format("".join(s1),"".join(s2),"".join(s3),"".join(s4),"".join(s5))
+  guid="guid {}-{}-{}-{}-{}".format("".join(s1),"".join(s2),"".join(s3),"".join(s4),"".join(s5))
   return guid
 
 '''COMIENZO DEL ALGORITMO'''
