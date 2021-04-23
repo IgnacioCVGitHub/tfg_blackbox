@@ -30,13 +30,17 @@ function serializeTable(val, name, skipnewlines, depth)
 end
 
 -- CÓDIGO 
+pelicula_cargada=movie.active()
+if pelicula_cargada then
+    longitud= movie.length()    
+end
 
 emu.speedmode("normal") -- Set the speed of the emulator
 
 while true do
 
     -- Execute instructions for FCEUX
-    
+    if
     emu.frameadvance() -- This essentially tells FCEUX to keep running
     m=serializeTable(joypad.readdown(1))
     emu.print(m)
