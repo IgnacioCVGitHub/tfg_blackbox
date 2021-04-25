@@ -40,7 +40,9 @@ emu.speedmode("normal") -- Set the speed of the emulator
 while true do
 
     -- Execute instructions for FCEUX
-    if
+    if pelicula_cargada then
+        
+    end
     emu.frameadvance() -- This essentially tells FCEUX to keep running
     m=serializeTable(joypad.readdown(1))
     emu.print(m)
