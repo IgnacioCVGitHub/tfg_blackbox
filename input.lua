@@ -31,20 +31,29 @@ end
 
 -- CÓDIGO 
 pelicula_cargada=movie.active()
-if pelicula_cargada then
-    longitud= movie.length()    
-end
 
 emu.speedmode("normal") -- Set the speed of the emulator
-
+f_objetivo=0
 while true do
 
     -- Execute instructions for FCEUX
     if pelicula_cargada then
-        
+
+        oponente=memory.readbyte(0x0001)
+        --Si el oponente es distinto del primero, supondremos que hemos derrotado con éxito
+        --al 1er enemigo con éxito
+        if not (oponente==0) then
+            f_objetivo=emu.framecount()
+            io.write(f_objetivo)
+            break
+        elseif  movie.mode()=="finished" then
+            f_objetivo=emu.framecount() + 1000
+            io.write(f_objetivo)
+            break
+        end
+        emu.print(m)
     end
     emu.frameadvance() -- This essentially tells FCEUX to keep running
-    m=serializeTable(joypad.readdown(1))
-    emu.print(m)
+    
  
  end
