@@ -31,10 +31,10 @@ end
 
 -- CÓDIGO 
 pelicula_cargada=movie.active()
-
+fin_alg=false
 emu.speedmode("normal") -- Set the speed of the emulator
 f_objetivo=0
-while true do
+while not fin_alg do
 
     -- Execute instructions for FCEUX
     if pelicula_cargada then
@@ -45,15 +45,19 @@ while true do
         if not (oponente==0) then
             f_objetivo=emu.framecount()
             io.write(f_objetivo)
-            break
+            emu.print(f_objetivo)
+            fin_alg=true
         elseif  movie.mode()=="finished" then
             f_objetivo=emu.framecount() + 1000
             io.write(f_objetivo)
-            break
+            emu.print(f_objetivo)
+            fin_alg=true
         end
-        emu.print(m)
+        
     end
     emu.frameadvance() -- This essentially tells FCEUX to keep running
-    
+    if fin_alg then
+        emu.exit()
+    end
  
  end
