@@ -183,6 +183,7 @@ ind_iniciales_preparados+=genera_heuristic(ind_iniciales_preparados[0],10)
 
 numero_generacion=0
 while numero_generacion<10:
+    #generacion de archivos para 
     for i in range(len(ind_iniciales_preparados)):
       filename='movie'+str(i)+'.fm2'
       filename=os.path.join('temp_movies',filename)
@@ -196,6 +197,11 @@ while numero_generacion<10:
         movietext+=inputs
         archivo.write(movietext)
     print("Archivos generados")
+    #Funciones objetivo
+    for i in range(len(ind_iniciales_preparados)):
+      filename='movie'+str(i)+'.fm2'
+      filename=os.path.join('temp_movies',filename)
+      
     numero_generacion=10
 
 
