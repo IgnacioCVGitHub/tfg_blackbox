@@ -30,15 +30,20 @@ function serializeTable(val, name, skipnewlines, depth)
 end
 
 -- CÓDIGO 
+--
+if emu.paused() then
+    emu.unpause()
+end
+emu.poweron()
 emu.loadrom("..\\Mike Tyson's Punch-Out!! (Japan, USA) (Rev A).nes")
-nombre_archivo="..\\tfg_blackbox\\temp_movies\\movie0.fm2"
 
-movie.play(nombre_archivo)
-print(nombre_archivo)
+movie.play("C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\temp_movies\\movie0.fm2")
+
 fin_alg=false
 emu.speedmode("normal") -- Set the speed of the emulator
 f_objetivo=0
 pelicula_cargada=movie.active()
+
 while not fin_alg do
 
     -- Execute instructions for FCEUX
@@ -50,20 +55,20 @@ while not fin_alg do
         --al 1er enemigo con éxito
         if not (oponente==0) then
             f_objetivo=emu.framecount()
-            print(f_objetivo)
-            emu.print(f_objetivo)
             fin_alg=true
         elseif  movie.mode()=="finished" then
             f_objetivo=emu.framecount() + 1000
-            print(f_objetivo)
-            emu.print(f_objetivo)
             fin_alg=true
         end
         
     end
     emu.frameadvance() -- This essentially tells FCEUX to keep running
     if fin_alg then
-        emu.exit()
+        emu.pause()
+        file=io.open("\\output.txt",'a')
+        io.output(file)
+        io.write(tostring(f_objetivo).."\n")
+        io.close()
     end
  
  end
