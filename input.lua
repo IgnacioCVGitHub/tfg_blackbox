@@ -65,7 +65,7 @@ while not fin_alg do
     emu.frameadvance() -- This essentially tells FCEUX to keep running
     if fin_alg then
         emu.pause()
-        file=io.open("\\output.txt",'a')
+        file=io.open("C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt",'a')
         io.output(file)
         io.write(tostring(f_objetivo).."\n")
         io.close()
