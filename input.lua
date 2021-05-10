@@ -33,7 +33,7 @@ end
 --
 emu.speedmode("normal") -- Set the speed of the emulator
 funciones_objetivo={}
-for i = 0, 25, 1 do
+for i = 0, 15, 1 do
     f_objetivo=0
     if emu.paused() then
         emu.unpause()
