@@ -11,6 +11,7 @@ import random as random
 import numpy as np
 import os
 import copy
+import time
 
 '''DEFINICIONES Y UTILIDADES'''
 
@@ -176,8 +177,8 @@ cabecera+="romChecksum base64:W8f6wG5Y/aFf2YH9A1csNA==\n"
 
 cabecera+="microphone 0\nport0 1\nport1 0\nport2 0\n"
 
-ind_iniciales_preparados+=genera_randoms(10,max_length)
-ind_iniciales_preparados+=genera_heuristic(ind_iniciales_preparados[0],10)
+ind_iniciales_preparados+=genera_randoms(5,max_length)
+ind_iniciales_preparados+=genera_heuristic(ind_iniciales_preparados[0],5)
 
 
 
@@ -198,10 +199,17 @@ while numero_generacion<10:
         archivo.write(movietext)
     print("Archivos generados")
     #Funciones objetivo
-    for i in range(len(ind_iniciales_preparados)):
-      filename='movie'+str(i)+'.fm2'
-      filename=os.path.join('temp_movies',filename)
+    output=os.system('cd ..\\fceux64 & start /B fceux64 -lua '+os.getcwd()+'\\input.lua & exit')
+    if output!=0:
+      print("Error en la ejecución. Procediendo a terminar el algoritmo...")
+      break
+    while not (os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')):
+      print('Esperando a las funciones objetivo...')
+      time.sleep(20.0)
       
+    if os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt'):
+      print('generacion de FF.OO terminada')
+
     numero_generacion=10
 
 
