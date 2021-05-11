@@ -180,7 +180,8 @@ cabecera+="microphone 0\nport0 1\nport1 0\nport2 0\n"
 ind_iniciales_preparados+=genera_randoms(5,max_length)
 ind_iniciales_preparados+=genera_heuristic(ind_iniciales_preparados[0],5)
 
-
+if os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt'):
+      os.system('del C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')
 
 numero_generacion=0
 while numero_generacion<10:
