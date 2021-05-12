@@ -12,7 +12,8 @@ import numpy as np
 import os
 import copy
 import time
-
+import ofmanagement
+import collections
 '''DEFINICIONES Y UTILIDADES'''
 
 
@@ -211,6 +212,13 @@ while numero_generacion<10:
     if os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt'):
       print('generacion de FF.OO terminada')
 
+    #extraemos las funciones objetivo y destruimos el fichero para futuras iteraciones
+    mapa_ffoo=ofmanagement.extract_of('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')
+    mapa_ffoo_ordenado=collections.OrderedDict(sorted(mapa_ffoo.items()))
+    os.system("del C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt")
+
+    #ordenamos los individuos por
+    #  
     numero_generacion=10
 
 
