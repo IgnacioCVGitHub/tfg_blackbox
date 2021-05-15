@@ -185,6 +185,7 @@ if os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\outpu
       os.system('del C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')
 
 numero_generacion=0
+mejor=None
 while numero_generacion<10:
     #generacion de archivos para 
     for i in range(len(ind_iniciales_preparados)):
@@ -217,8 +218,23 @@ while numero_generacion<10:
     mapa_ffoo_ordenado=collections.OrderedDict(sorted(mapa_ffoo.items()))
     os.system("del C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt")
 
-    #ordenamos los individuos por
-    #  
+    #ordenamos los individuos por su ranking en funcion objetivo
+    ind_iniciales_preparados=[x for _,x in sorted(zip(list(mapa_ffoo_ordenado.values()),ind_iniciales_preparados))]
+
+    #extraemos al mejor individuo de la generacion
+    mejor_individuo=ind_iniciales_preparados[0]
+    #Torunament selection para hacer crossover seleccionando 4 individuos en el torneo
+    parents=[]
+    for _ in range (8):
+      seleccionados=list(random.sample(range(16),4))
+      ganador=min(seleccionados,key=lambda x: mapa_ffoo_ordenado.get(x))
+      parents.append(ganador)
+
+    #una vez que seleccionamos los padres, hacemos crossoverhasta que tengamos 
+    #el numero de hijos deseado
+    descendencia=[]
+    for _ in range (6):
+      pass
     numero_generacion=10
 
 
