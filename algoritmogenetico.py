@@ -21,7 +21,7 @@ cabecera="C:\\Users\\icalc\\Documents\\TFG\\fceuxs\\fm2"
 rutas=os.listdir(cabecera)
 
 prob_cross=0.7
-prob_mut=0.1
+prob_mut=0.075
 
 def old_or_rd(numero):
   r=random.random()
@@ -233,9 +233,33 @@ while numero_generacion<10:
     #una vez que seleccionamos los padres, hacemos crossoverhasta que tengamos 
     #el numero de hijos deseado
     descendencia=[]
-    for _ in range (6):
-      pass
-    numero_generacion=10
+    combinaciones=[(x,y) for x in parents for y in parents]
+    while len(descendencia)<6:
+      pair=random.sample(combinaciones,1)[0]
+      match_chance=random.random()
+      if match_chance<prob_cross:
+        hijo1,hijo2=crucegenetico(ind_iniciales_preparados[pair[0]],ind_iniciales_preparados[pair[1]])
+        #decidimos si incluimos uno de los dos aleatoriamente o los dos
+        if random.random()<0.25:
+          descendencia.append(hijo1)
+          descendencia.append(hijo2)
+        else:
+          descendencia.append(random.sample([hijo2,hijo1],1)[0])
+      
+    #una vez tenemos una descendencia, reemplazamos a los peores de la generación
+    #con la descendencia
+    ind_iniciales_preparados[-1*len(descendencia):]=descendencia
+
+    #tras esto, para cada individuo, aplicamos un proceso de mutación
+    for i in range(len(ind_iniciales_preparados)):
+      if random.random()<prob_mut:
+        ind_iniciales_preparados[i]=mutacion(ind_iniciales_preparados[i])
+    
+    #finalmente, avanzamos la generación 
+    numero_generacion+=1
+
+
+
 
 
         
