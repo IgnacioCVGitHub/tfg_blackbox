@@ -109,7 +109,9 @@ def crucegenetico(a1,a2):
 def mutacion(a1):
   comienzo_m=random.randint(0,64343-60)
   fin_m=comienzo_m+60
-  a1[comienzo_m:fin_m]=random.shuffle(a1[comienzo_m:fin_m])
+  r=list(a1[comienzo_m:fin_m])
+  random.shuffle(r)
+  a1[comienzo_m:fin_m]=r
   return a1
 
 def separa_idles(cromosoma):
@@ -258,7 +260,15 @@ while numero_generacion<10:
     #finalmente, avanzamos la generación 
     numero_generacion+=1
 
-
+with open('mejorindividuo.fm2','w') as archivo:
+  copy_cabecera=copy.copy(cabecera)
+  copy_cabecera+=genera_guid()+'\n'
+  movietext=copy_cabecera
+  movietext+="|2|"+estados[mejor_individuo[0]]+"|||\n"
+  inputs="".join(["|0|"+estados[g]+"|||\n"
+    for g in mejor_individuo[1:]])
+  movietext+=inputs
+  archivo.write(movietext)
 
 
 
