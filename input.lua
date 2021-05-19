@@ -31,7 +31,7 @@ end
 
 -- CÓDIGO 
 --
-emu.speedmode("normal") -- Set the speed of the emulator
+emu.speedmode("turbo") -- Set the speed of the emulator
 funciones_objetivo={}
 for i = 0, 15, 1 do
     f_objetivo=0

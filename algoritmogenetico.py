@@ -204,12 +204,14 @@ while numero_generacion<10:
         archivo.write(movietext)
     print("Archivos generados")
     #Funciones objetivo
+    
     output=os.system('cd ..\\fceux64 & start /B fceux64 -lua '+os.getcwd()+'\\input.lua & exit')
+    print('Esperando a las funciones objetivo...')
     if output!=0:
       print("Error en la ejecución. Procediendo a terminar el algoritmo...")
       break
     while not (os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')):
-      print('Esperando a las funciones objetivo...')
+      
       time.sleep(20.0)
       
     if os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt'):
