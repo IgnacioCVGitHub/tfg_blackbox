@@ -167,6 +167,7 @@ ind_iniciales_preparados= [addNopes(i,max_length) for i in individuos_iniciales]
 
 
 ruta_tempmovies= os.path.join(os.getcwd(),"temp_movies")
+ruta_rom='c:\\Users\\icalc\\Documents\\TFG\\mtrom.nes'
 
 if not (os.path.exists(ruta_tempmovies) and os.path.isdir(ruta_tempmovies)):
   os.mkdir("temp_movies")
@@ -205,7 +206,7 @@ while numero_generacion<10:
     print("Archivos generados")
     #Funciones objetivo
     
-    output=os.system('cd ..\\fceux64 & start /B fceux64 -lua '+os.getcwd()+'\\input.lua & exit')
+    output=os.system('cd ..\\fceux64 & start /B fceux64 -lua '+os.getcwd()+'\\input.lua '+ruta_rom+' & exit')
     print('Esperando a las funciones objetivo...')
     if output!=0:
       print("Error en la ejecución. Procediendo a terminar el algoritmo...")

@@ -39,7 +39,7 @@ for i = 0, 15, 1 do
         emu.unpause()
     end
     emu.poweron()
-    emu.loadrom("..\\Mike Tyson's Punch-Out!! (Japan, USA) (Rev A).nes")
+    --emu.loadrom("..\\Mike Tyson's Punch-Out!! (Japan, USA) (Rev A).nes")
     filename="C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\temp_movies\\movie"..tostring(i)..".fm2"
     print(filename)
     movie.play(filename)
