@@ -40,7 +40,7 @@ for i = 0, 15, 1 do
     end
     emu.poweron()
     --emu.loadrom("..\\Mike Tyson's Punch-Out!! (Japan, USA) (Rev A).nes")
-    filename="C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\temp_movies\\movie"..tostring(i)..".fm2"
+    filename=".\\temp_movies\\movie"..tostring(i)..".fm2"
     print(filename)
     movie.play(filename)
     
@@ -77,7 +77,7 @@ for i = 0, 15, 1 do
      end
 end
 
-file=io.open("C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt",'w')
+file=io.open(".\\output\\output.txt",'w')
 io.output(file)
 io.write(tostring(serializeTable(funciones_objetivo)))
 io.close()

@@ -17,7 +17,7 @@ import collections
 '''DEFINICIONES Y UTILIDADES'''
 
 
-cabecera="C:\\Users\\icalc\\Documents\\TFG\\fceuxs\\fm2"
+cabecera="..\\fceuxs\\fm2"
 rutas=os.listdir(cabecera)
 
 prob_cross=0.7
@@ -167,7 +167,7 @@ ind_iniciales_preparados= [addNopes(i,max_length) for i in individuos_iniciales]
 
 
 ruta_tempmovies= os.path.join(os.getcwd(),"temp_movies")
-ruta_rom='c:\\Users\\icalc\\Documents\\TFG\\mtrom.nes'
+ruta_rom='..\\mtrom.nes'
 
 if not (os.path.exists(ruta_tempmovies) and os.path.isdir(ruta_tempmovies)):
   os.mkdir("temp_movies")
@@ -184,8 +184,8 @@ cabecera+="microphone 0\nport0 1\nport1 0\nport2 0\n"
 ind_iniciales_preparados+=genera_randoms(5,max_length)
 ind_iniciales_preparados+=genera_heuristic(ind_iniciales_preparados[0],5)
 
-if os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt'):
-      os.system('del C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')
+if os.path.exists('.\\output\\output.txt'):
+      os.system('del .\\output\\output.txt')
 
 numero_generacion=0
 mejor=None
@@ -211,17 +211,17 @@ while numero_generacion<10:
     if output!=0:
       print("Error en la ejecución. Procediendo a terminar el algoritmo...")
       break
-    while not (os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')):
+    while not (os.path.exists('.\\output\\output.txt')):
       
       time.sleep(20.0)
       
-    if os.path.exists('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt'):
+    if os.path.exists('.\\output\\output.txt'):
       print('generacion de FF.OO terminada')
 
     #extraemos las funciones objetivo y destruimos el fichero para futuras iteraciones
-    mapa_ffoo=ofmanagement.extract_of('C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt')
+    mapa_ffoo=ofmanagement.extract_of('.\\output\\output.txt')
     mapa_ffoo_ordenado=collections.OrderedDict(sorted(mapa_ffoo.items()))
-    os.system("del C:\\Users\\icalc\\Documents\\TFG\\tfg_blackbox\\output\\output.txt")
+    os.system("del .\\output\\output.txt")
 
     #ordenamos los individuos por su ranking en funcion objetivo
     ind_iniciales_preparados=[x for _,x in sorted(zip(list(mapa_ffoo_ordenado.values()),ind_iniciales_preparados))]
